@@ -1,4 +1,4 @@
-inputs: { config, lib, pkgs-us, ... }:
+{ config, lib, pkgs-us, inputs, ... }:
 let
   cfg = config.illogical-impulse;
 in
