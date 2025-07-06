@@ -1,10 +1,9 @@
-{ pkgs, quickshell, ... }:
+{ pkgs, ... }:
 
 {
   # Example: Install a package from the default (stable) channel
   home.packages = [
     pkgs.neovim
-    quickshell.packages.${builtins.currentSystem}.default
   ];
 
   # Example: Install a package specifically from the unstable channel

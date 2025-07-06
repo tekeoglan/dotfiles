@@ -9,29 +9,23 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    qs = {
-      # add ?ref=<tag> to track a tag
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-
-      # THIS IS IMPORTANT
-      # Mismatched system dependencies will lead to crashes and other issues.
-      inputs.nixpkgs.follows = "nixpkgs-us";
+    illogical-impulse = {
+      url = "path:./illogical-impulse";
     };
   };
   outputs =
-    { nixpkgs, nixpkgs-us, home-manager, qs, ... }:
+    { nixpkgs, nixpkgs-us, home-manager, illogical-impulse, ... }:
     let
       system = builtins.currentSystem;
       pkgs = nixpkgs.legacyPackages.${system};
       pkgs-us = nixpkgs-us.legacyPackages.${system};
-      quickshell = qs;
     in
     {
       homeConfigurations."tekeoglan" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
 
         extraSpecialArgs = {
-          inherit pkgs-us quickshell;
+          inherit pkgs-us illogical-impulse;
         };
 
         # Specify your home configuration modules here, for example,
