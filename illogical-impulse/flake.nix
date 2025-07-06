@@ -2,7 +2,7 @@
   description = "Illogical Impulse Hyprland Dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:Nixos/nixpkgs/nixos-unstable";
 
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
