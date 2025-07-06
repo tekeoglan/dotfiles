@@ -30,7 +30,7 @@
     };
   };
   outputs =
-    { nixpkgs, nixpkgs-us, home-manager, ... }@inputs:
+    { nixpkgs, nixpkgs-us, home-manager, ... }@ inputs:
     let
       system = builtins.currentSystem;
       pkgs = nixpkgs.legacyPackages.${system};

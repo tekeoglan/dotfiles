@@ -21,5 +21,8 @@ with lib;
       };
       ozoneWayland.enable = lib.mkEnableOption "Set NIXOS_OZONE_WL=1";
     };
+    anyrun = {
+      enable = mkEnableOption "Enable anyrun";
+    };
   };
 }

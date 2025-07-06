@@ -1,8 +1,8 @@
-{ lib, ... }:
+{ config, ... }:
 
 let
   # Creates a symlink from nix-store to target directory
-  configDir = lib.file.mkOutOfStoreSymlink builtins.toString ../config;
+  configDir = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/illogical-impulse/config";
   entries = builtins.readDir configDir;
 
   # Dynamically sources all the folders or files under '.dotfiles/config' to '.config' folder
@@ -17,7 +17,5 @@ let
   );
 
 in {
-  home.file = lib.mkMerge [
-    xdgFiles
-  ];
+  home.file = xdgFiles;
 }

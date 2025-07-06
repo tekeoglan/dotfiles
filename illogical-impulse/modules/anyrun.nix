@@ -3,7 +3,7 @@ let
   cfg = config.illogical-impulse;
 in
 {
-  config = lib.mkIf (cfg.enable) {
+  config = lib.mkIf (cfg.enable && cfg.anyrun.enable) {
     programs.anyrun = {
       enable = true;
       config = {
