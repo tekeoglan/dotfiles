@@ -1,4 +1,4 @@
-inputs: { config, lib, pkgs, ... }:
+inputs: { config, lib, pkgs-us, ... }:
 let
   cfg = config.illogical-impulse;
 in
@@ -7,7 +7,7 @@ in
     gtk = {
       enable = true;
       iconTheme = {
-        package = pkgs.adwaita-icon-theme;
+        package = pkgs-us.adwaita-icon-theme;
         name = "Adwaita";
       };
     };
@@ -17,8 +17,8 @@ in
     };
     home.sessionVariables.ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
-    home.packages = with pkgs; [
-      inputs.quickshell.packages.${pkgs.system}.default
+    home.packages = with pkgs-us; [
+      inputs.quickshell.packages.${pkgs-us.system}.default
       kdePackages.kdialog
       kdePackages.qt5compat
       kdePackages.qtbase

@@ -9,12 +9,28 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    illogical-impulse = {
-      url = "path:./illogical-impulse";
+    anyrun.url = "github:Kirottu/anyrun";
+    anyrun.inputs.nixpkgs.follows = "nixpkgs-us";
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs-us";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs-us";
     };
   };
   outputs =
-    { nixpkgs, nixpkgs-us, home-manager, illogical-impulse, ... }:
+    { nixpkgs, nixpkgs-us, home-manager, ... }@inputs:
     let
       system = builtins.currentSystem;
       pkgs = nixpkgs.legacyPackages.${system};
@@ -25,7 +41,7 @@
         inherit pkgs;
 
         extraSpecialArgs = {
-          inherit pkgs-us illogical-impulse;
+          inherit pkgs-us inputs;
         };
 
         # Specify your home configuration modules here, for example,
@@ -33,9 +49,8 @@
         modules = [
         ./home.nix
         ./modules
+        ./illogical-impulse
         ];
-
-        # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
       };
     };

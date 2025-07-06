@@ -4,8 +4,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": [
-          "illogical-impulse",
-          "nixpkgs"
+          "nixpkgs-us"
         ],
         "systems": "systems"
       },
@@ -26,22 +25,18 @@
     "aquamarine": {
       "inputs": {
         "hyprutils": [
-          "illogical-impulse",
           "hyprland",
           "hyprutils"
         ],
         "hyprwayland-scanner": [
-          "illogical-impulse",
           "hyprland",
           "hyprwayland-scanner"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -79,7 +74,6 @@
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
-          "illogical-impulse",
           "anyrun",
           "nixpkgs"
         ]
@@ -101,7 +95,6 @@
     "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": [
-          "illogical-impulse",
           "nur",
           "nixpkgs"
         ]
@@ -123,7 +116,6 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "pre-commit-hooks",
           "nixpkgs"
@@ -167,17 +159,14 @@
     "hyprcursor": {
       "inputs": {
         "hyprlang": [
-          "illogical-impulse",
           "hyprland",
           "hyprlang"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -199,17 +188,14 @@
     "hyprgraphics": {
       "inputs": {
         "hyprutils": [
-          "illogical-impulse",
           "hyprland",
           "hyprutils"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -260,17 +246,14 @@
     "hyprland-plugins": {
       "inputs": {
         "hyprland": [
-          "illogical-impulse",
           "hyprland"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland-plugins",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland-plugins",
           "hyprland",
           "systems"
@@ -293,12 +276,10 @@
     "hyprland-protocols": {
       "inputs": {
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -320,19 +301,16 @@
     "hyprland-qt-support": {
       "inputs": {
         "hyprlang": [
-          "illogical-impulse",
           "hyprland",
           "hyprland-qtutils",
           "hyprlang"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "hyprland-qtutils",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "hyprland-qtutils",
           "systems"
@@ -356,24 +334,20 @@
       "inputs": {
         "hyprland-qt-support": "hyprland-qt-support",
         "hyprlang": [
-          "illogical-impulse",
           "hyprland",
           "hyprlang"
         ],
         "hyprutils": [
-          "illogical-impulse",
           "hyprland",
           "hyprland-qtutils",
           "hyprlang",
           "hyprutils"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -395,17 +369,14 @@
     "hyprlang": {
       "inputs": {
         "hyprutils": [
-          "illogical-impulse",
           "hyprland",
           "hyprutils"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -427,12 +398,10 @@
     "hyprutils": {
       "inputs": {
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -454,12 +423,10 @@
     "hyprwayland-scanner": {
       "inputs": {
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]
@@ -477,26 +444,6 @@
         "repo": "hyprwayland-scanner",
         "type": "github"
       }
-    },
-    "illogical-impulse": {
-      "inputs": {
-        "anyrun": "anyrun",
-        "hyprland": "hyprland",
-        "hyprland-plugins": "hyprland-plugins",
-        "nixpkgs": "nixpkgs_2",
-        "nur": "nur",
-        "quickshell": "quickshell",
-        "systems": "systems_3"
-      },
-      "locked": {
-        "path": "./illogical-impulse",
-        "type": "path"
-      },
-      "original": {
-        "path": "./illogical-impulse",
-        "type": "path"
-      },
-      "parent": []
     },
     "nixpkgs": {
       "locked": {
@@ -532,22 +479,6 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1751637120,
-        "narHash": "sha256-xVNy/XopSfIG9c46nRmPaKfH1Gn/56vQ8++xWA8itO4=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "5c724ed1388e53cc231ed98330a60eb2f7be4be3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_3": {
-      "locked": {
         "lastModified": 1750969886,
         "narHash": "sha256-zW/OFnotiz/ndPFdebpo3X0CrbVNf22n4DjN2vxlb58=",
         "owner": "Nixos",
@@ -566,16 +497,15 @@
       "inputs": {
         "flake-parts": "flake-parts_2",
         "nixpkgs": [
-          "illogical-impulse",
-          "nixpkgs"
+          "nixpkgs-us"
         ]
       },
       "locked": {
-        "lastModified": 1751809785,
-        "narHash": "sha256-embx3texXZITtgbc/vU+plXHTCpjjSbf9at5D53C+sU=",
+        "lastModified": 1751816846,
+        "narHash": "sha256-bp17t5AUP5JpSQ5+ev5Mp67S1F4Gmt4t3xeWYSQToH8=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "4993c0b47fb9942275d6c64a42a1061962c3358c",
+        "rev": "6decca0a78f44ff30f582226e7c1ed4e4b40c831",
         "type": "github"
       },
       "original": {
@@ -589,7 +519,6 @@
         "flake-compat": "flake-compat",
         "gitignore": "gitignore",
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ]
@@ -611,8 +540,7 @@
     "quickshell": {
       "inputs": {
         "nixpkgs": [
-          "illogical-impulse",
-          "nixpkgs"
+          "nixpkgs-us"
         ]
       },
       "locked": {
@@ -631,10 +559,14 @@
     },
     "root": {
       "inputs": {
+        "anyrun": "anyrun",
         "home-manager": "home-manager",
-        "illogical-impulse": "illogical-impulse",
-        "nixpkgs": "nixpkgs_3",
-        "nixpkgs-us": "nixpkgs-us"
+        "hyprland": "hyprland",
+        "hyprland-plugins": "hyprland-plugins",
+        "nixpkgs": "nixpkgs_2",
+        "nixpkgs-us": "nixpkgs-us",
+        "nur": "nur",
+        "quickshell": "quickshell"
       }
     },
     "systems": {
@@ -667,50 +599,29 @@
         "type": "github"
       }
     },
-    "systems_3": {
-      "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default-linux",
-        "type": "github"
-      }
-    },
     "xdph": {
       "inputs": {
         "hyprland-protocols": [
-          "illogical-impulse",
           "hyprland",
           "hyprland-protocols"
         ],
         "hyprlang": [
-          "illogical-impulse",
           "hyprland",
           "hyprlang"
         ],
         "hyprutils": [
-          "illogical-impulse",
           "hyprland",
           "hyprutils"
         ],
         "hyprwayland-scanner": [
-          "illogical-impulse",
           "hyprland",
           "hyprwayland-scanner"
         ],
         "nixpkgs": [
-          "illogical-impulse",
           "hyprland",
           "nixpkgs"
         ],
         "systems": [
-          "illogical-impulse",
           "hyprland",
           "systems"
         ]

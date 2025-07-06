@@ -1,4 +1,4 @@
-inputs: { config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   enabled = config.illogical-impulse.enable;
   hypr = config.illogical-impulse.hyprland.package;
