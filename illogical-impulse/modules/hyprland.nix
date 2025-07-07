@@ -13,9 +13,9 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = false;
-      xwayland.enable = true;
-      package = hypr;
+      systemd.enable = true;
+      xwayland.enable = false;
+      package = (config.lib.nixGL.wrap hypr);
       portalPackage = hypr-xdg;
 
       # settings = {
@@ -49,7 +49,6 @@ in
       #   source=~/.config/hypr/custom/rules.conf
       #   source=~/.config/hypr/custom/keybinds.conf
       # '';
-
     };
 
     services.hypridle = {

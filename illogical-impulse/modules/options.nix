@@ -19,7 +19,6 @@ with lib;
         default = pkgs.xdg-desktop-portal-hyprland;
         description = "xdg-desktop-portal package for Hyprland";
       };
-      ozoneWayland.enable = lib.mkEnableOption "Set NIXOS_OZONE_WL=1";
     };
     anyrun = {
       enable = mkEnableOption "Enable anyrun";

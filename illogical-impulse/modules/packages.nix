@@ -68,7 +68,6 @@ in
       kdePackages.polkit-kde-agent-1
 
       # # SCREEN CAPUTUER #
-      swappy
       wf-recorder
       hyprshot
       tesseract
@@ -107,7 +106,7 @@ in
       glib
       swww
       translate-shell
-      wlogout
+      (config.lib.nixGL.wrap wlogout)
 
     ] ++ (with pkgs.nerd-fonts; [
       # nerd fonts
