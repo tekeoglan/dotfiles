@@ -48,7 +48,7 @@ in
       #   fish
       #   fontconfig
       python313Packages.kde-material-you-colors
-      #   kitty
+      (config.lib.nixGL.wrap kitty)
       #   matugen
       #   starship
       #   # ttf-readex-pro #TODO need monaula install

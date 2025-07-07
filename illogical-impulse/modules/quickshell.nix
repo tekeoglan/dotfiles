@@ -1,6 +1,7 @@
 { config, lib, pkgs-us, inputs, ... }:
 let
   cfg = config.illogical-impulse;
+  qs = inputs.quickshell.packages.${pkgs-us.system}.default;
 in
 {
   config = lib.mkIf cfg.enable {
@@ -18,7 +19,7 @@ in
     home.sessionVariables.ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
     home.packages = with pkgs-us; [
-      inputs.quickshell.packages.${pkgs-us.system}.default
+      (config.lib.nixGL.wrap qs)
       kdePackages.kdialog
       kdePackages.qt5compat
       kdePackages.qtbase

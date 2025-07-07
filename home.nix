@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
@@ -14,6 +14,10 @@
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
+
+  nixGL.packages = inputs.nixgl.packages;
+  nixGL.defaultWrapper = "mesa";
+  nixGL.installScripts = [ "mesa" ];
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
