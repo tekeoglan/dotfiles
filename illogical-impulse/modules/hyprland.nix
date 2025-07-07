@@ -3,9 +3,12 @@ let
   enabled = config.illogical-impulse.enable;
   hypr = config.illogical-impulse.hyprland.package;
   hypr-xdg = config.illogical-impulse.hyprland.xdgPortalPackage;
+  mkSymlink = config.lib.file.mkOutOfStoreSymlink; 
+  conf = "${config.home.homeDirectory}/.dotfiles/illogical-impulse/config";
 in
 {
   config = lib.mkIf enabled {
+
     home.packages = with pkgs; [
       hyprpicker
       hyprlock
@@ -13,46 +16,40 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      systemd.enable = true;
-      xwayland.enable = false;
       package = (config.lib.nixGL.wrap hypr);
       portalPackage = hypr-xdg;
-
-      # settings = {
-      #   env = [
-      #     "GIO_EXTRA_MODULES, ${pkgs.gvfs}/lib/gio/modules:$GIO_EXTRA_MODULES"
-      #   ] ++ (lib.optionals hyprlandConf.ozoneWayland.enable [
-      #     "NIXOS_OZONE_WL, 1"
-      #   ]);
-      #   exec = [
-      #     "hyprctl dispatch submap global" # DO NOT REMOVE THIS OR YOU WON'T BE ABLE TO USE ANY KEYBIND
-      #   ];
-      #   submap = "global"; # This is required for catchall to work
-      #
-      #   debug.disable_logs = false;
-      #
-      #   monitor = hyprlandConf.monitor;
-      # };
-      #
-      # extraConfig = ''
-      #   # Defaults
-      #   source=~/.config/hypr/hyprland/execs.conf
-      #   source=~/.config/hypr/hyprland/general.conf
-      #   source=~/.config/hypr/hyprland/rules.conf
-      #   source=~/.config/hypr/hyprland/colors.conf
-      #   source=~/.config/hypr/hyprland/keybinds.conf
-      #
-      #   # Custom 
-      #   source=~/.config/hypr/custom/env.conf
-      #   source=~/.config/hypr/custom/execs.conf
-      #   source=~/.config/hypr/custom/general.conf
-      #   source=~/.config/hypr/custom/rules.conf
-      #   source=~/.config/hypr/custom/keybinds.conf
-      # '';
+      systemd = {
+        enable = true;
+        variables = ["--all"];
+      };
+      extraConfig = ''
+        source=~/.config/hypr/custom.conf
+      '';
     };
 
     services.hypridle = {
       enable = true;
+    };
+
+  # NOTE: this executable is used by greetd to start a wayland session when system boot up
+  # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config in NixOS module
+    home.file.".wayland-session" = {
+      source = "${hypr}/bin/Hyprland";
+      executable = true;
+    };
+
+    xdg.configFile = {
+      "hypr/custom".source = mkSymlink "${conf}/hypr/custom";
+      "hypr/custom".recursive = true;
+      "hypr/hyprland".source = mkSymlink "${conf}/hypr/hyprland";
+      "hypr/hyprland".recursive = true;
+      "hypr/hyprlock".source = mkSymlink "${conf}/hypr/hyprlock";
+      "hypr/hyprlock".recursive = true;
+      "hypr/shaders".source = mkSymlink "${conf}/hypr/shaders";
+      "hypr/shaders".recursive = true;
+      "hypr/custom.conf".source = mkSymlink "${conf}/hypr/custom.conf";
+      "hypr/hypridle.conf".source = mkSymlink "${conf}/hypr/hypridle.conf";
+      "hypr/hyprlock.conf".source = mkSymlink "${conf}/hypr/hyprlock.conf";
     };
   };
 }
