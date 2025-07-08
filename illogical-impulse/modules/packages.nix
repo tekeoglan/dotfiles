@@ -33,7 +33,6 @@ in
       jq
       # meson
       fish
-      foot
       fuzzel
       matugen
       mpv
@@ -50,7 +49,7 @@ in
       python313Packages.kde-material-you-colors
       (config.lib.nixGL.wrap kitty)
       #   matugen
-      #   starship
+      starship
       #   # ttf-readex-pro #TODO need monaula install
       #   # ttf-jetbrains-mono-nerd
       material-symbols
