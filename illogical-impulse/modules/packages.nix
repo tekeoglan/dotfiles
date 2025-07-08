@@ -69,7 +69,7 @@ in
 
       # # SCREEN CAPUTUER #
       wf-recorder
-      hyprshot
+      # hyprshot
       tesseract
       slurp
 

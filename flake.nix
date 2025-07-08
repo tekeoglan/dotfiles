@@ -18,13 +18,13 @@
       inputs.nixpkgs.follows = "nixpkgs-us";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
+    # hyprland.url = "github:hyprwm/Hyprland";
+    #
+    # hyprland-plugins = {
+    #   url = "github:hyprwm/hyprland-plugins";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+    #
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs-us";

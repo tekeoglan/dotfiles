@@ -22,6 +22,10 @@ in
         enable = true;
         variables = ["--all"];
       };
+	    # settings = {
+	    #   exec = ["hyprctl dispatch submap global"];
+	    #   submap = "global";
+	    # };
       extraConfig = ''
         source=~/.config/hypr/custom.conf
       '';

@@ -27,7 +27,7 @@ let
   entries = builtins.readDir configDir;
 
   # Filter out the 'hypr' directory from the main list of entries
-  filteredEntries = builtins.filter (name: name != "hypr") (builtins.attrNames entries);
+  # filteredEntries = builtins.filter (name: name != "hypr") (builtins.attrNames entries);
 
   # Dynamically sources all the folders or files under '.dotfiles/config' to '.config' folder,
   # excluding the 'hypr' directory.
@@ -38,7 +38,7 @@ let
         source = (configDir + "/${name}");
         recursive = true; # Maintain recursion for subdirectories
       };
-    }) filteredEntries
+    }) (builtins.attrNames entries)
   );
 in {
   home.file = xdgFiles; # Merge the two sets of file symlinks
