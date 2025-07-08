@@ -15,6 +15,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
+import Quickshell.Widgets
 import Quickshell.Wayland
 import Quickshell.Hyprland
 import "./services/"
@@ -40,11 +41,11 @@ ShellRoot {
     // Force initialization of some singletons
     Component.onCompleted: {
         MaterialThemeLoader.reapplyTheme();
-        ConfigLoader.loadConfig();
     }
 
     component TargetRegion: Rectangle {
         id: regionRect
+        property bool showIcon: false
         property bool targeted: false
         property color borderColor
         property color fillColor: "transparent"
@@ -70,13 +71,28 @@ ShellRoot {
                 topMargin: regionRect.textPadding
                 leftMargin: regionRect.textPadding
             }
-            implicitWidth: regionText.implicitWidth + horizontalPadding * 2
-            implicitHeight: regionText.implicitHeight + verticalPadding * 2
-            StyledText {
-                id: regionText
-                text: regionRect.text
-                color: root.genericContentForeground
+            implicitWidth: regionInfoRow.implicitWidth + horizontalPadding * 2
+            implicitHeight: regionInfoRow.implicitHeight + verticalPadding * 2
+            RowLayout {
+                id: regionInfoRow
                 anchors.centerIn: parent
+                spacing: 8
+
+                Loader {
+                    id: regionIconLoader
+                    active: regionRect.showIcon
+                    visible: active
+                    sourceComponent: IconImage {
+                        implicitSize: Appearance.font.pixelSize.larger
+                        source: Quickshell.iconPath(AppSearch.guessIcon(regionRect.text), "image-missing")
+                    }
+                }
+
+                StyledText {
+                    id: regionText
+                    text: regionRect.text
+                    color: root.genericContentForeground
+                }
             }
         }
     }
@@ -87,7 +103,10 @@ ShellRoot {
         PanelWindow {
             id: panelWindow
             required property var modelData
-            property HyprlandMonitor hyprlandMonitor: Hyprland.monitorFor(modelData)
+            readonly property HyprlandMonitor hyprlandMonitor: Hyprland.monitorFor(modelData)
+            readonly property real monitorScale: hyprlandMonitor.scale
+            readonly property real monitorOffsetX: hyprlandMonitor.x
+            readonly property real monitorOffsetY: hyprlandMonitor.y
             property int activeWorkspaceId: hyprlandMonitor.activeWorkspace?.id ?? 0
             property string screenshotPath: `${root.screenshotDir}/image-${modelData.name}`
             property real dragStartX: 0
@@ -100,15 +119,22 @@ ShellRoot {
             property bool dragging: false
             property var mouseButton: null
             property var imageRegions: []
-            readonly property var windowRegions: filterWindowRegionsByLayers(
+            readonly property list<var> windowRegions: filterWindowRegionsByLayers(
                 root.windows.filter(w => w.workspace.id === panelWindow.activeWorkspaceId),
                 panelWindow.layerRegions
-            )
-            readonly property var layerRegions: {
+            ).map(window => {
+                return {
+                    at: [window.at[0] - panelWindow.monitorOffsetX, window.at[1] - panelWindow.monitorOffsetY],
+                    size: [window.size[0], window.size[1]],
+                    class: window.class,
+                    title: window.title,
+                }
+            })
+            readonly property list<var> layerRegions: {
                 const layersOfThisMonitor = root.layers[panelWindow.hyprlandMonitor.name]
                 const topLayers = layersOfThisMonitor.levels["2"]
                 const nonBarTopLayers = topLayers
-                    .filter(layer => !(layer.namespace.includes(":bar")))
+                    .filter(layer => !(layer.namespace.includes(":bar") || layer.namespace.includes(":dock")))
                     .map(layer => {
                     return {
                         at: [layer.x, layer.y],
@@ -116,7 +142,14 @@ ShellRoot {
                         namespace: layer.namespace,
                     }
                 })
-                return nonBarTopLayers;
+                const offsetAdjustedLayers = nonBarTopLayers.map(layer => {
+                    return {
+                        at: [layer.at[0] - panelWindow.monitorOffsetX, layer.at[1] - panelWindow.monitorOffsetY],
+                        size: layer.size,
+                        namespace: layer.namespace,
+                    }
+                });
+                return offsetAdjustedLayers;
             }
 
             property real targetedRegionX: -1
@@ -293,7 +326,10 @@ ShellRoot {
                     snipProc.startDetached();
                     Qt.quit();
                 }
-                command: ["bash", "-c", `magick ${StringUtils.shellSingleQuoteEscape(panelWindow.screenshotPath)} -crop ${panelWindow.regionWidth}x${panelWindow.regionHeight}+${panelWindow.regionX}+${panelWindow.regionY} - ` + `| ${panelWindow.mouseButton === Qt.LeftButton ? "wl-copy" : "swappy -f -"}`]
+                command: ["bash", "-c", 
+                    `magick ${StringUtils.shellSingleQuoteEscape(panelWindow.screenshotPath)} `
+                    + `-crop ${panelWindow.regionWidth * panelWindow.monitorScale}x${panelWindow.regionHeight * panelWindow.monitorScale}+${panelWindow.regionX * panelWindow.monitorScale}+${panelWindow.regionY * panelWindow.monitorScale} - ` 
+                    + `| ${panelWindow.mouseButton === Qt.LeftButton ? "wl-copy" : "swappy -f -"}`]
             }
 
             ScreencopyView {
@@ -414,6 +450,7 @@ ShellRoot {
                         }
                     }
 
+                    // Window regions
                     Repeater {
                         model: ScriptModel {
                             values: panelWindow.windowRegions
@@ -421,6 +458,7 @@ ShellRoot {
                         delegate: TargetRegion {
                             z: 2
                             required property var modelData
+                            showIcon: true
                             targeted: !panelWindow.draggedAway &&
                                 (panelWindow.targetedRegionX === modelData.at[0] 
                                 && panelWindow.targetedRegionY === modelData.at[1]
@@ -445,6 +483,7 @@ ShellRoot {
                         }
                     }
 
+                    // Layer regions
                     Repeater {
                         model: ScriptModel {
                             values: panelWindow.layerRegions
@@ -476,9 +515,10 @@ ShellRoot {
                         }
                     }
 
+                    // Image regions
                     Repeater {
                         model: ScriptModel {
-                            values: panelWindow.imageRegions
+                            values: Config.options.screenshotTool.showContentRegions ? panelWindow.imageRegions : []
                         }
                         delegate: TargetRegion {
                             z: 4
