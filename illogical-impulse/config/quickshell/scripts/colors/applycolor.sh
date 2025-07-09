@@ -57,4 +57,4 @@ apply_qt() {
 }
 
 apply_qt &
-apply_term &
+# apply_term &

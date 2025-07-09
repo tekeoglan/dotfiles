@@ -34,8 +34,10 @@
     { nixpkgs, nixpkgs-us, home-manager, ... }@ inputs:
     let
       system = builtins.currentSystem;
-      pkgs = nixpkgs.legacyPackages.${system};
-      pkgs-us = nixpkgs-us.legacyPackages.${system};
+      # pkgs = nixpkgs.legacyPackages.${system};
+      pkgs = import nixpkgs { system = system; config.allowUnfree = true; };
+      # pkgs-us = nixpkgs-us.legacyPackages.${system};
+      pkgs-us = import nixpkgs-us { system = system; config.allowUnfree = true; };
     in
     {
       homeConfigurations."tekeoglan" = home-manager.lib.homeManagerConfiguration {

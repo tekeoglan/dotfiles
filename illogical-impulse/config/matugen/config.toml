@@ -36,4 +36,4 @@ output_path = '~/.local/state/quickshell/user/generated/wallpaper/path.txt'
 [templates.kitty]
 input_path = '~/.config/matugen/templates/kitty/colors.conf'
 output_path = '~/.config/kitty/colors.conf'
-post_hook = '~/.nix-profile/bin/kitten @ --to unix:/tmp/mykitty set-colors -a -c "$HOME/.config/kitty/colors.conf"'
+post_hook = "bash -c 'kitten @ set-colors -a -c $HOME/.config/kitty/colors.conf'"

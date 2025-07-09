@@ -116,6 +116,7 @@ in
       fantasque-sans-mono
       mononoki
       space-mono
+      fira-code
     ]);
 
     services.gammastep.enable = true;
