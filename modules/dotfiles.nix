@@ -26,8 +26,4 @@ in {
     xdgFiles
     homeFiles
   ];
-
-  home.sessionVariables = {
-    PATH="$PATH:${config.home.homeDirectory}/.nix-profile/bin";
-  };
 }

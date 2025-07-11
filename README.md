@@ -20,7 +20,7 @@ Before you begin, ensure you have [Nix](https://nixos.org/download.html) install
    This command builds and activates the Home Manager configuration specified in `flake.nix`.
 
    ```bash
-   nix run home-manager/release-25.05 -- switch -b .bak --impure --flake .#tekeoglan
+   home-manager switch -b bak --impure --flake .#tekeoglan
    ```
 
 ## Structure
@@ -29,10 +29,22 @@ Before you begin, ensure you have [Nix](https://nixos.org/download.html) install
 *   `home.nix`: The main Home Manager configuration file.
 *   `modules/`: A directory containing modularized parts of the configuration.
 *   `config/`: Contains the raw configuration files that are symlinked by Home Manager.
+*   `illogical-impulse/`: Contains the configuration files that relate to [illogical-impulse](https://github.com/end-4/dots-hyprland).
 
 ## Customization
 
-To customize this configuration, you can edit the files in the `modules/` and `config/` directories. After making changes, run the `nix run home-manager/release-25.05 -- switch -b .bak --impure --flake .#tekeoglan` command again to apply them.
+To customize this configuration, you can edit the files in the `modules/` and `config/` directories. After making changes, run the `home-manager switch -b bak --impure --flake .#tekeoglan` command again to apply them.
+
+## Disclaimer
+
+Since Nix can't make system-wide changes on non-NixOS distributions, I had to install `Hyprland` using Fedora's package manager. If you're using NixOS, I've included the Hyprland-related configurations for reference.
+
+## References
+
+Here are some repositories I used as inspiration for my configuration:
+- [nix-config](https://github.com/ryan4yin/nix-config)  
+- [end-4-dots-hyprland-nixos](https://github.com/xBLACKICEx/end-4-dots-hyprland-nixos)
+
 
 ## License
 

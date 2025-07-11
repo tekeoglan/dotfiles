@@ -1,10 +1,13 @@
 { inputs, ... }:
-
+let
+  username = "tekeoglan";
+  homeDirectory = "/home/tekeoglan";
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "tekeoglan";
-  home.homeDirectory = "/home/tekeoglan";
+  home.username = username;
+  home.homeDirectory = homeDirectory;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -36,7 +39,8 @@
   #  /etc/profiles/per-user/tekeoglan/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    # set '.nix-profile/bin' path so that the other programs detect nix installed programs
+    PATH="$PATH:${homeDirectory}/.nix-profile/bin";
   };
 
   # Let Home Manager install and manage itself.
