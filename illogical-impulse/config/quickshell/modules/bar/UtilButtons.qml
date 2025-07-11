@@ -91,8 +91,10 @@ Item {
                 onClicked: event => {
                     if (Appearance.m3colors.darkmode) {
                         Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode light --noswitch`]);
+                        // console.info(`[utilButtons] lightBgImage: ${Config.options.bar.utilButtons.lightBgImage}`);
                     } else {
                         Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode dark --noswitch`]);
+                        // console.info(`[utilButtons] darkBgImage: ${Config.options.bar.utilButtons.darkBgImage}`);
                     }
                 }
                 MaterialSymbol {

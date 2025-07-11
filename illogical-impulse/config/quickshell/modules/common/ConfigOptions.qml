@@ -62,6 +62,8 @@ Singleton {
             property bool showMicToggle: false
             property bool showKeyboardToggle: true
             property bool showDarkModeToggle: true
+            property string darkBgImage: "$HOME/Pictures/background/dusk.jpg"
+            property string lightBgImage: "$HOME/Pictures/background/sun_up.jpg"
         }
         property QtObject tray: QtObject {
             property bool monochromeIcons: true

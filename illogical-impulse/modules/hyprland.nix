@@ -1,13 +1,13 @@
 { config, lib, pkgs, ... }:
 let
-  enabled = config.illogical-impulse.enable;
+  cfg = config.illogical-impulse;
   hypr = config.illogical-impulse.hyprland.package;
   hypr-xdg = config.illogical-impulse.hyprland.xdgPortalPackage;
   mkSymlink = config.lib.file.mkOutOfStoreSymlink; 
   conf = "${config.home.homeDirectory}/.dotfiles/illogical-impulse/config";
 in
 {
-  config = lib.mkIf enabled {
+  config = lib.mkIf (cfg.enabled && cfg.hyprland.enabled) {
 
     home.packages = with pkgs; [
       hyprpicker
@@ -22,10 +22,6 @@ in
         enable = true;
         variables = ["--all"];
       };
-	    # settings = {
-	    #   exec = ["hyprctl dispatch submap global"];
-	    #   submap = "global";
-	    # };
       extraConfig = ''
         source=~/.config/hypr/custom.conf
       '';

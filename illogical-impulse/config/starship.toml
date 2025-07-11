@@ -1,261 +1,134 @@
-add_newline = true
-
-[character]
-success_symbol = "[>](bold green)"
-error_symbol = "[x](bold red)"
-vimcmd_symbol = "[<](bold green)"
-
-[git_commit]
-tag_symbol = " tag "
-
-[git_status]
-ahead = ">"
-behind = "<"
-diverged = "<>"
-renamed = "r"
-deleted = "x"
-
-[aws]
-symbol = "aws "
-
-[azure]
-symbol = "az "
+[bun]
+format = "via [$symbol]($style)"
 
 [buf]
-symbol = "buf "
-
-[bun]
-symbol = "bun "
-
-[c]
-symbol = "C "
-
-[cpp]
-symbol = "C++ "
-
-[cobol]
-symbol = "cobol "
-
-[conda]
-symbol = "conda "
-
-[container]
-symbol = "container "
-
-[crystal]
-symbol = "cr "
+format = "via [$symbol]($style)"
 
 [cmake]
-symbol = "cmake "
+format = "via [$symbol]($style)"
+
+[cobol]
+format = "via [$symbol]($style)"
+
+[crystal]
+format = "via [$symbol]($style)"
 
 [daml]
-symbol = "daml "
+format = "via [$symbol]($style)"
 
 [dart]
-symbol = "dart "
+format = "via [$symbol]($style)"
 
 [deno]
-symbol = "deno "
+format = "via [$symbol]($style)"
 
 [dotnet]
-symbol = ".NET "
-
-[directory]
-read_only = " ro"
-
-[docker_context]
-symbol = "docker "
+format = "[$symbol(🎯 $tfm )]($style)"
 
 [elixir]
-symbol = "exs "
+format = 'via [$symbol]($style)'
 
 [elm]
-symbol = "elm "
+format = 'via [$symbol]($style)'
+
+[erlang]
+format = 'via [$symbol]($style)'
 
 [fennel]
-symbol = "fnl "
-
-[fossil_branch]
-symbol = "fossil "
-
-[gcloud]
-symbol = "gcp "
-
-[git_branch]
-symbol = "git "
+format = 'via [$symbol]($style)'
 
 [gleam]
-symbol = "gleam "
+format = 'via [$symbol]($style)'
 
 [golang]
-symbol = "go "
+format = 'via [$symbol]($style)'
 
 [gradle]
-symbol = "gradle "
+format = 'via [$symbol]($style)'
 
-[guix_shell]
-symbol = "guix "
-
-[haskell]
-symbol = "haskell "
+[haxe]
+format = 'via [$symbol]($style)'
 
 [helm]
-symbol = "helm "
-
-[hg_branch]
-symbol = "hg "
+format = 'via [$symbol]($style)'
 
 [java]
-symbol = "java "
+format = 'via [$symbol]($style)'
 
 [julia]
-symbol = "jl "
+format = 'via [$symbol]($style)'
 
 [kotlin]
-symbol = "kt "
+format = 'via [$symbol]($style)'
 
 [lua]
-symbol = "lua "
-
-[nodejs]
-symbol = "nodejs "
-
-[memory_usage]
-symbol = "memory "
+format = 'via [$symbol]($style)'
 
 [meson]
-symbol = "meson "
-
-[nats]
-symbol = "nats "
+format = 'via [$symbol]($style)'
 
 [nim]
-symbol = "nim "
+format = 'via [$symbol]($style)'
 
-[nix_shell]
-symbol = "nix "
+[nodejs]
+format = 'via [$symbol]($style)'
 
 [ocaml]
-symbol = "ml "
+format = 'via [$symbol(\($switch_indicator$switch_name\) )]($style)'
 
 [opa]
-symbol = "opa "
-
-[os.symbols]
-AIX = "aix "
-Alpaquita = "alq "
-AlmaLinux = "alma "
-Alpine = "alp "
-Amazon = "amz "
-Android = "andr "
-Arch = "rch "
-Artix = "atx "
-Bluefin = "blfn "
-CachyOS = "cach "
-CentOS = "cent "
-Debian = "deb "
-DragonFly = "dfbsd "
-Emscripten = "emsc "
-EndeavourOS = "ndev "
-Fedora = "fed "
-FreeBSD = "fbsd "
-Garuda = "garu "
-Gentoo = "gent "
-HardenedBSD = "hbsd "
-Illumos = "lum "
-Kali = "kali "
-Linux = "lnx "
-Mabox = "mbox "
-Macos = "mac "
-Manjaro = "mjo "
-Mariner = "mrn "
-MidnightBSD = "mid "
-Mint = "mint "
-NetBSD = "nbsd "
-NixOS = "nix "
-Nobara = "nbra "
-OpenBSD = "obsd "
-OpenCloudOS = "ocos "
-openEuler = "oeul "
-openSUSE = "osuse "
-OracleLinux = "orac "
-Pop = "pop "
-Raspbian = "rasp "
-Redhat = "rhl "
-RedHatEnterprise = "rhel "
-RockyLinux = "rky "
-Redox = "redox "
-Solus = "sol "
-SUSE = "suse "
-Ubuntu = "ubnt "
-Ultramarine = "ultm "
-Unknown = "unk "
-Uos = "uos "
-Void = "void "
-Windows = "win "
-
-[package]
-symbol = "pkg "
+format = 'via [$symbol]($style)'
 
 [perl]
-symbol = "pl "
-
-[php]
-symbol = "php "
-
-[pijul_channel]
-symbol = "pijul "
+format = 'via [$symbol]($style)'
 
 [pixi]
-symbol = "pixi "
+format = 'via [$symbol($environment )]($style)'
+
+[php]
+format = 'via [$symbol]($style)'
 
 [pulumi]
-symbol = "pulumi "
+format = 'via [$symbol$stack]($style)'
 
 [purescript]
-symbol = "purs "
+format = 'via [$symbol]($style)'
 
 [python]
-symbol = "py "
+format = 'via [$symbol]($style)'
 
 [quarto]
-symbol = "quarto "
+format = 'via [$symbol]($style)'
 
 [raku]
-symbol = "raku "
+format = 'via [$symbol]($style)'
+
+[red]
+format = 'via [$symbol]($style)'
 
 [rlang]
-symbol = "r "
+format = 'via [$symbol]($style)'
 
 [ruby]
-symbol = "rb "
+format = 'via [$symbol]($style)'
 
 [rust]
-symbol = "rs "
-
-[scala]
-symbol = "scala "
-
-[spack]
-symbol = "spack "
+format = 'via [$symbol]($style)'
 
 [solidity]
-symbol = "solidity "
-
-[status]
-symbol = "[x](bold red) "
-
-[sudo]
-symbol = "sudo "
-
-[swift]
-symbol = "swift "
+format = 'via [$symbol]($style)'
 
 [typst]
-symbol = "typst "
+format = 'via [$symbol]($style)'
 
-[terraform]
-symbol = "terraform "
+[swift]
+format = 'via [$symbol]($style)'
+
+[vagrant]
+format = 'via [$symbol]($style)'
+
+[vlang]
+format = 'via [$symbol]($style)'
 
 [zig]
-symbol = "zig "
+format = 'via [$symbol]($style)'

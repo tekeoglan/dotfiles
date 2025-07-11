@@ -11,6 +11,5 @@
       zellij
       lazygit
       ncspot
-      alsa-lib
     ] ++ wrappedApps;
 }
