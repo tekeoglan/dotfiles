@@ -22,6 +22,12 @@ in
   nixGL.defaultWrapper = "mesa";
   nixGL.installScripts = [ "mesa" ];
 
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly"; 
+    options = "--delete-older-than 7d";
+  };
+
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
   # shell provided by Home Manager. If you don't want to manage your shell

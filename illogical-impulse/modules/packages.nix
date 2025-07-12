@@ -24,6 +24,7 @@ in
       bc
       # coreutils
       cliphist
+      # gammastep
       # cmake
       curl
       rsync
@@ -118,10 +119,6 @@ in
       space-mono
       fira-code
     ]);
-
-    services.gammastep.enable = true;
-    services.gammastep.provider = "geoclue2";
-    services.network-manager-applet.enable = true;
   };
   # home.packages = with pkgs; [
 
