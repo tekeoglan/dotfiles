@@ -1,13 +1,27 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.illogical-impulse;
-  hypr = config.illogical-impulse.hyprland.package;
+  glwrap = config.lib.nixGL.wrap;
+  hypr = glwrap config.illogical-impulse.hyprland.package;
   hypr-xdg = config.illogical-impulse.hyprland.xdgPortalPackage;
-  mkSymlink = config.lib.file.mkOutOfStoreSymlink; 
-  conf = "${config.home.homeDirectory}/.dotfiles/illogical-impulse/config";
+  conf = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/illogical-impulse/config";
 in
 {
-  config = lib.mkIf (cfg.enabled && cfg.hyprland.enabled) {
+  config = lib.mkIf (cfg.enable && cfg.hyprland.enable) {
+
+    xdg.configFile = {
+      "hypr/custom".source = "${conf}/hypr/custom";
+      "hypr/custom".recursive = true;
+      "hypr/hyprland".source = "${conf}/hypr/hyprland";
+      "hypr/hyprland".recursive = true;
+      "hypr/hyprlock".source = "${conf}/hypr/hyprlock";
+      "hypr/hyprlock".recursive = true;
+      "hypr/shaders".source = "${conf}/hypr/shaders";
+      "hypr/shaders".recursive = true;
+      "hypr/default.conf".source = "${conf}/hypr/hyprland.conf";
+      "hypr/hypridle.conf".source = "${conf}/hypr/hypridle.conf";
+      "hypr/hyprlock.conf".source = "${conf}/hypr/hyprlock.conf";
+    };
 
     home.packages = with pkgs; [
       hyprpicker
@@ -16,14 +30,14 @@ in
 
     wayland.windowManager.hyprland = {
       enable = true;
-      package = (config.lib.nixGL.wrap hypr);
+      package = hypr;
       portalPackage = hypr-xdg;
       systemd = {
         enable = true;
         variables = ["--all"];
       };
       extraConfig = ''
-        source=~/.config/hypr/custom.conf
+        source=~/.config/hypr/default.conf
       '';
     };
 
@@ -31,25 +45,13 @@ in
       enable = true;
     };
 
-  # NOTE: this executable is used by greetd to start a wayland session when system boot up
-  # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config in NixOS module
-    home.file.".wayland-session" = {
-      source = "${hypr}/bin/Hyprland";
-      executable = true;
-    };
-
-    xdg.configFile = {
-      "hypr/custom".source = mkSymlink "${conf}/hypr/custom";
-      "hypr/custom".recursive = true;
-      "hypr/hyprland".source = mkSymlink "${conf}/hypr/hyprland";
-      "hypr/hyprland".recursive = true;
-      "hypr/hyprlock".source = mkSymlink "${conf}/hypr/hyprlock";
-      "hypr/hyprlock".recursive = true;
-      "hypr/shaders".source = mkSymlink "${conf}/hypr/shaders";
-      "hypr/shaders".recursive = true;
-      "hypr/custom.conf".source = mkSymlink "${conf}/hypr/custom.conf";
-      "hypr/hypridle.conf".source = mkSymlink "${conf}/hypr/hypridle.conf";
-      "hypr/hyprlock.conf".source = mkSymlink "${conf}/hypr/hyprlock.conf";
-    };
+    home.file.".local/share/wayland-sessions/hyprland.desktop".text = ''
+      [Desktop Entry]
+      Name=Hyprland
+      Comment=Hyprland Wayland Compositor
+      Exec=${hypr}/bin/Hyprland
+      Type=Application
+      DesktopNames=Hyprland
+    '';
   };
 }

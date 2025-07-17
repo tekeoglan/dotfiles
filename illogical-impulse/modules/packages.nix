@@ -1,6 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 let
   cfg = config.illogical-impulse;
+  glwrap = config.lib.nixGL.wrap;
   selfPkgs = import ../pkgs {
     inherit pkgs;
   };
@@ -24,7 +25,7 @@ in
       bc
       # coreutils
       cliphist
-      # gammastep
+      gammastep
       # cmake
       curl
       rsync
@@ -48,7 +49,7 @@ in
       #   fish
       #   fontconfig
       python313Packages.kde-material-you-colors
-      (config.lib.nixGL.wrap kitty)
+      (glwrap kitty)
       #   matugen
       starship
       #   # ttf-readex-pro #TODO need monaula install
@@ -106,7 +107,7 @@ in
       glib
       swww
       translate-shell
-      (config.lib.nixGL.wrap wlogout)
+      (glwrap wlogout)
 
     ] ++ (with pkgs.nerd-fonts; [
       # nerd fonts

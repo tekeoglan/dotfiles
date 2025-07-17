@@ -5,11 +5,6 @@ with lib;
     enable = mkEnableOption "Enable illogical-impulse";
     hyprland = {
       enable = mkEnableOption "Enable hyprland";
-      monitor = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ",preferred,auto,1" ];
-        description = "Monitor preferences for Hyprland";
-      };
       package = lib.mkOption {
         type = lib.types.package;
         default = pkgs.hyprland;

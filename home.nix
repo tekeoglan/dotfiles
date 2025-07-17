@@ -20,7 +20,6 @@ in
 
   nixGL.packages = inputs.nixgl.packages;
   nixGL.defaultWrapper = "mesa";
-  nixGL.installScripts = [ "mesa" ];
 
   nix.gc = {
     automatic = true;

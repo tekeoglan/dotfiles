@@ -10,6 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl.url = "github:nix-community/nixGL";
+
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs-us";
 
@@ -18,13 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs-us";
     };
 
-    # hyprland.url = "github:hyprwm/Hyprland";
-    #
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-    #
     nur = {
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs-us";
@@ -34,9 +28,7 @@
     { nixpkgs, nixpkgs-us, home-manager, ... }@ inputs:
     let
       system = builtins.currentSystem;
-      # pkgs = nixpkgs.legacyPackages.${system};
       pkgs = import nixpkgs { system = system; config.allowUnfree = true; };
-      # pkgs-us = nixpkgs-us.legacyPackages.${system};
       pkgs-us = import nixpkgs-us { system = system; config.allowUnfree = true; };
     in
     {
@@ -47,14 +39,11 @@
           inherit pkgs-us inputs;
         };
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [
         ./home.nix
         ./modules
         ./illogical-impulse
         ];
-        # to pass through arguments to home.nix
       };
     };
 }
