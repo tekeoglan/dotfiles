@@ -19,7 +19,7 @@ in
     home.sessionVariables.ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
     home.packages = with pkgs-us; [
-      (config.lib.nixGL.wrap qs)
+      qs
       kdePackages.kdialog
       kdePackages.qt5compat
       kdePackages.qtbase

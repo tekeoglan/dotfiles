@@ -18,14 +18,15 @@ in
   # release notes.
   home.stateVersion = "25.05"; # Please read the comment before changing.
 
-  nixGL.packages = inputs.nixgl.packages;
-  nixGL.defaultWrapper = "mesa";
-
   nix.gc = {
     automatic = true;
     frequency = "weekly"; 
     options = "--delete-older-than 7d";
   };
+
+  # nixGL.packages = inputs.nixgl.packages; 
+  # nixGL.defaultWrapper = "mesa";
+  # nixGL.vulkan.enable = true;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -47,6 +48,11 @@ in
     # set '.nix-profile/bin' path so that the other programs detect nix installed programs
     PATH="$PATH:${homeDirectory}/.nix-profile/bin";
   };
+
+  home.sessionPath = [
+    "$HOME/.nix-profile/bin" # binaries
+    "$HOME/.nix-profile/share/applications" # .desktop files
+  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

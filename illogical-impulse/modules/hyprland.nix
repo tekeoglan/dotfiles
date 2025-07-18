@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   cfg = config.illogical-impulse;
-  glwrap = config.lib.nixGL.wrap;
-  hypr = glwrap config.illogical-impulse.hyprland.package;
+  hypr = config.illogical-impulse.hyprland.package;
   hypr-xdg = config.illogical-impulse.hyprland.xdgPortalPackage;
   conf = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/illogical-impulse/config";
 in
@@ -21,6 +20,16 @@ in
       "hypr/default.conf".source = "${conf}/hypr/hyprland.conf";
       "hypr/hypridle.conf".source = "${conf}/hypr/hypridle.conf";
       "hypr/hyprlock.conf".source = "${conf}/hypr/hyprlock.conf";
+    };
+
+    home.sessionVariables = {
+      NIXOS_OZONE_WL = "1";                   # Wayland support for Electron apps
+      QT_QPA_PLATFORM = "wayland";            # Qt apps use Wayland
+      GDK_BACKEND = "wayland";                # GTK apps use Wayland
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+      GBM_BACKEND = "default";
     };
 
     home.packages = with pkgs; [
@@ -49,7 +58,7 @@ in
       [Desktop Entry]
       Name=Hyprland
       Comment=Hyprland Wayland Compositor
-      Exec=${hypr}/bin/Hyprland
+      Exec=nixGL Hyprland
       Type=Application
       DesktopNames=Hyprland
     '';

@@ -9,7 +9,11 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl.url = "github:nix-community/nixGL";
+
+    # nixgl = {
+    #   url = "github:nix-community/nixGL";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     anyrun.url = "github:Kirottu/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs-us";

@@ -4,7 +4,8 @@
     graphicalApps = [
       zotero
     ];
-    wrappedApps = map config.lib.nixGL.wrap graphicalApps;
+    # wrappedApps = map config.lib.nixGL.wrap graphicalApps;
+    wrappedApps = graphicalApps;
   in
     [
       neovim
