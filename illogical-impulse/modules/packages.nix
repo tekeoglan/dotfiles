@@ -49,7 +49,6 @@ in
       #   fontconfig
       python313Packages.kde-material-you-colors
       kitty
-      #   matugen
       starship
       #   # ttf-readex-pro #TODO need monaula install
       #   # ttf-jetbrains-mono-nerd
@@ -72,6 +71,7 @@ in
       # hyprshot
       tesseract
       slurp
+      grim
 
       # # TOOLKIT #
       upower
