@@ -1,24 +1,22 @@
 { config, pkgs, lib, ... }:
 let
-  enabled = config.illogical-impulse.enable;
+  cfg = config.illogical-impulse;
   cursor = config.illogical-impulse.theme.cursor;
 in
 {
-  config = lib.mkIf enabled {
-    # Fonts
-    fonts.fontconfig.enable = true;
+  config = lib.mkIf cfg.enable {
 
-    # Cursor
     home.sessionVariables = {
       XCURSOR_THEME = cursor.theme;
       XCURSOR_SIZE = 24;
     };
 
     home.pointerCursor = {
+      enable = true;
+      gtk.enable = true;
       package = cursor.package;
       name = cursor.theme;
       size = 24;
-      gtk.enable = true;
     };
 
     home.file.".local/share/icons/MoreWaita" = {

@@ -7,5 +7,6 @@
     ./hyprland.nix
     ./packages.nix
     ./config.nix
+    ./theme.nix
   ];
 }

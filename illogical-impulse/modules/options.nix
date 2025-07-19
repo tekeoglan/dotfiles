@@ -19,5 +19,17 @@ with lib;
     anyrun = {
       enable = mkEnableOption "Enable anyrun";
     };
+    theme = {
+      cursor = {
+        package = lib.mkOption {
+          type = lib.types.package;
+          default = pkgs.bibata-cursors;
+        };
+        theme = lib.mkOption {
+          type = lib.types.str;
+          default = "Bibata-Modern-Ice";
+        };
+      };
+    };
   };
 }
