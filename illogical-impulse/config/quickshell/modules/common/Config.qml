@@ -113,6 +113,8 @@ Singleton {
                     property bool showMicToggle: false
                     property bool showKeyboardToggle: true
                     property bool showDarkModeToggle: true
+                    property string darkBgImage: ""
+                    property string lightBgImage: ""
                 }
                 property JsonObject tray: JsonObject {
                     property bool monochromeIcons: true

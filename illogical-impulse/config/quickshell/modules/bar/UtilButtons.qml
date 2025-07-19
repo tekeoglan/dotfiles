@@ -90,10 +90,10 @@ Item {
                 Layout.alignment: Qt.AlignVCenter
                 onClicked: event => {
                     if (Appearance.m3colors.darkmode) {
-                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode light --noswitch`]);
-                        // console.info(`[utilButtons] lightBgImage: ${Config.options.bar.utilButtons.lightBgImage}`);
+                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode light --image ${Config.options.bar.utilButtons.lightBgImage}`]);
+                        // console.info(`[utilButtons] lightBgImage: $}`);
                     } else {
-                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode dark --noswitch`]);
+                        Quickshell.execDetached(["bash", "-c", `${Directories.wallpaperSwitchScriptPath} --mode dark --image ${Config.options.bar.utilButtons.darkBgImage}`]);
                         // console.info(`[utilButtons] darkBgImage: ${Config.options.bar.utilButtons.darkBgImage}`);
                     }
                 }
