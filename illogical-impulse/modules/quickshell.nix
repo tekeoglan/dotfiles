@@ -1,7 +1,6 @@
 { config, lib, pkgs-us, inputs, ... }:
 let
   cfg = config.illogical-impulse;
-  qs = inputs.quickshell.packages.${pkgs-us.system}.default;
 in
 {
   config = lib.mkIf cfg.enable {
@@ -12,14 +11,15 @@ in
         name = "Adwaita";
       };
     };
+
     qt = {
       enable = true;
       platformTheme.name = "kde6";
     };
-    home.sessionVariables.ILLOGICAL_IMPULSE_VIRTUAL_ENV = "~/.local/state/quickshell/.venv";
 
     home.packages = with pkgs-us; [
-      qs
+      inputs.quickshell.packages.${pkgs-us.system}.default
+      qtcreator
       kdePackages.kdialog
       kdePackages.qt5compat
       kdePackages.qtbase

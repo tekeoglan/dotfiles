@@ -1,4 +1,9 @@
-{...}:
+{ config, lib, ...}:
+let
+  cfg = config.illogical-impulse;
+in
 {
-  services.swww.enable = true;
+  config = lib.mkIf (cfg.enable && cfg.hyprland.enable) {
+    services.swww.enable = true;
+  };
 }

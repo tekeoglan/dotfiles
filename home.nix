@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ ... }:
 let
   username = "tekeoglan";
   homeDirectory = "/home/tekeoglan";
@@ -23,10 +23,6 @@ in
     frequency = "weekly"; 
     options = "--delete-older-than 7d";
   };
-
-  # nixGL.packages = inputs.nixgl.packages; 
-  # nixGL.defaultWrapper = "mesa";
-  # nixGL.vulkan.enable = true;
 
   # Home Manager can also manage your environment variables through
   # 'home.sessionVariables'. These will be explicitly sourced when using a

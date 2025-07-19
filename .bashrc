@@ -37,4 +37,7 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export EDITOR=nvim 
 export VISUAL=nvim
 
+# Home manager specific vars
+source ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+
 fish

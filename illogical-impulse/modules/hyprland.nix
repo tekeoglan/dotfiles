@@ -22,16 +22,6 @@ in
       "hypr/hyprlock.conf".source = "${conf}/hypr/hyprlock.conf";
     };
 
-    home.sessionVariables = {
-      NIXOS_OZONE_WL = "1";                   # Wayland support for Electron apps
-      QT_QPA_PLATFORM = "wayland";            # Qt apps use Wayland
-      GDK_BACKEND = "wayland";                # GTK apps use Wayland
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_TYPE = "wayland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-      GBM_BACKEND = "default";
-    };
-
     home.packages = with pkgs; [
       hyprpicker
       hyprlock
@@ -53,14 +43,5 @@ in
     services.hypridle = {
       enable = true;
     };
-
-    home.file.".local/share/wayland-sessions/hyprland.desktop".text = ''
-      [Desktop Entry]
-      Name=Hyprland
-      Comment=Hyprland Wayland Compositor
-      Exec=nixGL Hyprland
-      Type=Application
-      DesktopNames=Hyprland
-    '';
   };
 }
