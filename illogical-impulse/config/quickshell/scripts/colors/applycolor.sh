@@ -51,10 +51,37 @@ apply_term() {
   done
 }
 
+apply_kitty() {
+  if [ ! -f "$XDG_CONFIG_HOME"/kitty/colors.conf ]; then
+    echo "Kitty's colors not found. Skipping."
+    return
+  fi
+
+  # Find the PID of the kitty process
+  kitty_pid=$(pidof kitty)
+
+  if [[ -n "$kitty_pid" ]]; then
+      echo "Kitty is running with PID $kitty_pid."
+
+      # This is neccessary for executing set-colors as command from a bash. 
+      # Because, in bash, kitty's env paramaters won't be exist.
+      # Hence, It can't detect the correct soccet to connect to.
+      socket_path="unix:/tmp/mykitty-$kitty_pid"
+
+      # Send color configuration
+      kitten @ --to "$socket_path" set-colors -a -c "$XDG_CONFIG_HOME/kitty/colors.conf"
+
+      echo "Colors applied to $socket_path."
+  else
+      echo "Kitty is not running. Skipping color update."
+  fi
+}
+
 apply_qt() {
   sh "$CONFIG_DIR/scripts/kvantum/materialQT.sh"          # generate kvantum theme
   python "$CONFIG_DIR/scripts/kvantum/changeAdwColors.py" # apply config colors
 }
 
 apply_qt &
+apply_kitty &
 # apply_term &
