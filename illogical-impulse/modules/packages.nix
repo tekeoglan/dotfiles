@@ -11,7 +11,7 @@ in
       # # AUDIO #
       cava
       lxqt.pavucontrol-qt
-      wireplumber
+      # wireplumber
       libdbusmenu-gtk3
       playerctl
 
