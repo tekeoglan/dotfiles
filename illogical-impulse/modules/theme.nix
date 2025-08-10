@@ -16,7 +16,7 @@ in
       gtk.enable = true;
       package = cursor.package;
       name = cursor.theme;
-      size = 32;
+      size = 24;
     };
 
     home.file.".local/share/icons/MoreWaita" = {

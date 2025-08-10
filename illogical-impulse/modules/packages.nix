@@ -47,7 +47,7 @@ in
       eza
       #   fish
       #   fontconfig
-      python313Packages.kde-material-you-colors
+      # python313Packages.kde-material-you-colors
       kitty
       starship
       #   # ttf-readex-pro #TODO need monaula install
@@ -88,18 +88,18 @@ in
       gobject-introspection
       sassc
       opencv
-      (python3.withPackages (python-pkgs: with python-pkgs; [
-        build
-        pillow
-        setuptools-scm
-        wheel
-        pywayland
-        psutil
-        materialyoucolor
-        libsass
-        material-color-utilities
-        setproctitle
-      ]))
+      # (python3.withPackages (python-pkgs: with python-pkgs; [
+      #   build
+      #   pillow
+      #   setuptools-scm
+      #   wheel
+      #   pywayland
+      #   psutil
+      #   materialyoucolor
+      #   libsass
+      #   material-color-utilities
+      #   setproctitle
+      # ]))
 
 
       # # WIDGETS #

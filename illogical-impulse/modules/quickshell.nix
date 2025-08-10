@@ -19,7 +19,6 @@ in
 
     home.packages = with pkgs-us; [
       inputs.quickshell.packages.${pkgs-us.system}.default
-      qtcreator
       kdePackages.kdialog
       kdePackages.qt5compat
       kdePackages.qtbase
