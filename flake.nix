@@ -10,12 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixgl = {
-    #   url = "github:nix-community/nixGL";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    anyrun.url = "github:Kirottu/anyrun";
+    anyrun.url = "github:anyrun-org/anyrun";
     anyrun.inputs.nixpkgs.follows = "nixpkgs-us";
 
     quickshell = {
